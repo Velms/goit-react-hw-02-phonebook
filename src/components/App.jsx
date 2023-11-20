@@ -16,16 +16,20 @@ class App extends Component {
     filter: '',
   };
 
-  addContact = ({ name, number }) => {
-    const normalizedName = name.toLowerCase();
+  addContact = contact => {
+    const { contacts } = this.state;
+    const { name } = contact;
 
-    let isAdded = false;
-    this.state.contacts.find(el => {
-      if (el.name.toLowerCase() === normalizedName) {
-        alert(`${name} is already in contacts`);
-        isAdded = true;
-      }
+    // Verify contact
+    if (contacts.find(contact => contact.name === name)) {
+      Notify.failure(`${name} is already in contacts`);
+      return;
+    }
+
+    this.setState(prevState => {
+      return { contacts: [...prevState.contacts, contact] };
     });
+  };
 
     if (isAdded) {
       return;
