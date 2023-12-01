@@ -21,14 +21,12 @@ class App extends Component {
 
     let isAdded = false;
 
-this.state.contacts.find((el) => {
-  if (el.name.toLowerCase() === normalizedName) {
-    alert(`${name} is already in contacts`);
-    isAdded = true;
-    return true;
-  }
-  return false;
-});
+const foundContact = this.state.contacts.find(el => el.name.toLowerCase() === normalizedName);
+
+if (foundContact) {
+  alert(`${name} is already in contacts`);
+  isAdded = true;
+}
 
 if (isAdded) {
   return;
