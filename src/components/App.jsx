@@ -19,18 +19,17 @@ class App extends Component {
   addContact = ({ name, number }) => {
     const normalizedName = name.toLowerCase();
 
-    let isAdded = false;
+    const isAdded = this.state.contacts.find(el => {
+      return (el.name.toLowerCase() === normalizedName) {
+        alert(`${name} is already in contacts`);
+        isAdded = true;
+      }
+    });
 
-const foundContact = this.state.contacts.find(el => el.name.toLowerCase() === normalizedName);
-
-if (foundContact) {
-  alert(`${name} is already in contacts`);
-  isAdded = true;
-}
-
-if (isAdded) {
-  return;
-}
+    if (isAdded) {
+      alert;
+      return;
+    }
     const contact = {
       id: shortid.generate(),
       name: name,
